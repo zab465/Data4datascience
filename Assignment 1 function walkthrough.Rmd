@@ -1,0 +1,80 @@
+---
+title: "Assignment 1 function walkthrough"
+output: html_document
+date: "2023-10-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## The get_girth Function. 
+
+The get_girth function is designed for the "trees" dataset, but can be used on other datasets where the units of the first column need to be grouped, or converted from inches to the metric system. It takes two arguments: data, and action. Action can be one of the following: 
+
+* "metre" (converts from inches to metres)
+* "mm" (converts from inches to millimetres)
+* "group" (groups the data according to the first variable)
+The default action is "cm" and it converts from inches to centimetres. It does not need to be specified. 
+Below I exemplify the outputs that can be yielded by this function. 
+
+#### Converting to metres:
+
+As it can be seen in the output of the function, the original measurements were given in inches, and were then multiplied to achieve the same tree circumference but in metres. 
+
+```{r}
+#the function 
+data("trees")
+
+#The function will return the values of the first column in centimeters, from inches
+get_girth <- function(data, action) {
+  if (action == "metre"){
+    mtr <- data[, 1] * 0.0254
+    return(mtr)
+    }else if (action == "mm"){
+      mm <- data[, 1] * 25.4
+      return(mm)
+      }else if (action == "group"){
+        split_data <- split(data, data[, 1])
+        return(split_data)
+        }else{
+          cm <- data[, 1]*2.54
+          return(cm)
+        }
+}
+```
+```{r}
+#showing the original values in inches
+head(trees[,1])
+#showing modified values in metres
+head(get_girth(trees, "metre"))
+```
+
+
+#### Converting to millimetres
+
+Using "mm" as an argument, we achieve he measurements in millimetres. 
+```{r}
+#showing modified values in millimetres
+head(get_girth(trees, "mm"))
+```
+
+#### Grouping by column 1, tree_girth
+
+If we use the "group" argument, we are able to group the trees according to their circumference. This allows us to see if there are multiple trees that have the same circumference, and group them as such. This can be used when investigating properties related to the age of trees (measured in circumference). 
+
+Below is an extract of the oupt for rows 12-14.
+
+```{r}
+#showing the grouped values, in an instance where there is a group
+print(get_girth(trees[12:14,], "group"))
+```
+#### Ignoring optional arguments
+
+The function can be used without second argument and will return simply the conversion of the measurement in centimetres.
+
+### Appendix of code
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE} 
+# this chunk generates the complete code appendix. 
+# eval=FALSE tells R not to run (``evaluate'') the code here (it was already run before).
+```
