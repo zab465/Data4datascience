@@ -1,15 +1,18 @@
-#The function designed below will be used for the "swiss" dataset 
-data("swiss")
-View(swiss)
+#The function designed below will be used for the "trees" dataset 
+#contains information about 
+data("trees")
 
-#The function corr_function will return the correlation of the first and the last columns in the data
-my_function <- function(data){
-  if (ncol(data) < 2) {
-    stop 
-  }else{
-    correlation <- (cor(data[3], data[4]))
-    return(correlation)
+View(USArrests)
+
+#The function will return the values of the first column in centimeters, from inches
+my_function <- function(data) {
+  for (i in data[1]){
+  cm <- i*2.54
+  return(cm)
   }
 }
 
-my_function(swiss)
+
+my_function(trees)
+
+
