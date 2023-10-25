@@ -3,7 +3,7 @@
 data("trees")
 
 #The function will return the values of the first column in centimeters, from inches
-my_function <- function(data, action) {
+get_girth <- function(data, action) {
   if (action == "metre"){
     mtr <- data[, 1] * 0.0254
     return(mtr)
@@ -18,6 +18,4 @@ my_function <- function(data, action) {
           return(cm)
         }
 }
-
-
 my_function(trees, "group")
