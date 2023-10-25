@@ -7,7 +7,8 @@ my_function <- function(data){
   if (ncol(data) < 2) {
     stop 
   }else{
-    return(summary(data[3]))
+    correlation <- (cor(data[3], data[4]))
+    return(correlation)
   }
 }
 
