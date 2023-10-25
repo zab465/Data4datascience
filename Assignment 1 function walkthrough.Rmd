@@ -43,7 +43,9 @@ get_girth <- function(data, action) {
 }
 ```
 ```{r}
+#showing the original values in inches
 head(trees[,1])
+#showing modified values in metres
 head(get_girth(trees, "metre"))
 ```
 
@@ -52,6 +54,7 @@ head(get_girth(trees, "metre"))
 
 Using "mm" as an argument, we achieve he measurements in millimetres. 
 ```{r}
+#showing modified values in millimetres
 head(get_girth(trees, "mm"))
 ```
 
@@ -62,6 +65,7 @@ If we use the "group" argument, we are able to group the trees according to thei
 Below is an extract of the oupt for rows 12-14.
 
 ```{r}
+#showing the grouped values, in an instance where there is a group
 print(get_girth(trees[12:14,], "group"))
 ```
 #### Ignoring optional arguments
