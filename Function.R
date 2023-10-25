@@ -2,13 +2,20 @@
 data("swiss")
 View(swiss)
 
-#The function corr_function will return the correlation of the first and the last columns in the data
-my_function <- function(data){
+#The function will return the return head or tail for the third column in the data set 
+#if the second argument is specified
+#else it will return the summary like the original function 
+my_function <- function(data, action){
   if (ncol(data) < 2) {
     stop 
-  }else{
+  } else if (action == "head") {
+    return(head(data[3]))
+  } else if (action == "tail") {
+    return(tail(data[3]))
+  } else {
     return(summary(data[3]))
-  }
+  } 
 }
 
-my_function(swiss)
+#testing function 
+my_function(swiss, "head")
